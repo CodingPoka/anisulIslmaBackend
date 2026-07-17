@@ -2,33 +2,21 @@
 const express = require('express');
 const app=express();
 
+const userRouter=require("./routes/users.route.js");
 
+
+
+app.use("/api/users/",userRouter);
 
 app.get("/",(req,res)=>{
     res.send("Welcome to my first express js server");
 })
 
-app.get("/login",(req,res)=>{
-    res.send("This is a login page");
+
+//when someone tries to access a route which is not defined in our server then we will send a 404 error page
+app.use((req,res)=>{
+   res.status(404).send("404 error page not found");
 })
-
-app.get("/register",(req,res)=>{
-    res.send("This is a register page");
-})
-
-app.post("/",(req,res)=>{
-    res.send("This is a post request");
-})
-
-
-app.put("/",(req,res)=>{
-    res.send("This is a put request");
-})
-
-app.delete("/",(req,res)=>{
-    res.send("This is a delete request");
-})
-
 
 
 module.exports=app;
