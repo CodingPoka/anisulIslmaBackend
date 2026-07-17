@@ -1,12 +1,25 @@
 
 
 const express=require("express");
+require("dotenv").config();
 const app=express();
-const port=3000;
+const port=process.env.PORT || 3000;
 
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
+
+const checkLogin= (req,res,next)=>{ 
+    console.log("checking login");
+    next();
+
+}
+
+app.get("/about",checkLogin,(req,res)=>{
+    
+    res.send("Welcome to about page");
+
+})
 
 app.get("/",(req,res)=>{
     res.send("Welcome to my first express js server");
