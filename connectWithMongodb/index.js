@@ -9,6 +9,8 @@ const port=5000;
 const dns = require("dns");
 dns.setServers(["8.8.8.8"]);
 
+
+
 const connectDB = async()=>{
     try{
         await mongoose.connect("mongodb+srv://admin:admin1234@cluster0.p11nqls.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0");
