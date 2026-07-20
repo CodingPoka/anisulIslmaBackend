@@ -3,12 +3,16 @@ const express=require("express");
 const app=express();
 const cors=require("cors");
 
-const productRouter=require("./routes/product.route");
-
-
-
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
+
+const authRouter=require("./route/auth.route");
+const adminRoute=require("./route/admin.route");
+
+app.use("/api",authRouter);
+
+//admin route
+app.use("/api/admin", adminRoute);
 
 app.use(
     cors({
@@ -16,7 +20,7 @@ app.use(
     })
 );
 
-app.use("/api/products", productRouter);
+
 
 app.get("/",(req,res)=>{
     res.send("Welcome to home page");
